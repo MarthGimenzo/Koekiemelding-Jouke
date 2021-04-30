@@ -10,7 +10,7 @@ h1 {
     text-align: center;
     top: 70%;
     font-size: x-large;
-    
+    -webkit-text-stroke: 0.2px white;
 }
 
 #text {
