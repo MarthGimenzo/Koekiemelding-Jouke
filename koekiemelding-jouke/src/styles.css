@@ -1,0 +1,10 @@
+body {
+    margin:           0px;
+    background-color: #8e6565;
+    background-size:  141.42px 141.42px;
+}
+
+.pixelgraphics {
+    min-width: 320px;
+    image-rendering: pixelated;
+}

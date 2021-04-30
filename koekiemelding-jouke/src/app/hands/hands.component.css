@@ -1,0 +1,8 @@
+.hands {
+    position: relative;
+    right: 60%;
+    bottom: 80px;
+    width: 180%;
+    z-index: 200;
+}
+

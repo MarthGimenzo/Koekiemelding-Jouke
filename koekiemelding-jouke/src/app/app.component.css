@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: ZerofourB;
+    src: url(..\assets\fonts\04B.ttf);
+}
+
+h1 {
+    font-family: ZerofourB;
+    position: absolute;
+    text-align: center;
+    top: 70%;
+    font-size: x-large;
+}
+
+#text {
+    opacity: 0%;
+}
+
+.yellow-rectangle {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(45deg, #f5ff94 25%, #c77f8a 25%, #c77f8a 50%, #f5ff94 50%, #f5ff94 75%, #c77f8a 75%, #c77f8a 100%);
+    background-size: 282.84px 282.84px;
+    /* background-image: url("../src/assets/speedstripes.png");*/
+    animation: backgroundScroll 0.8s linear infinite;
+    margin-top: 35vh;
+    height: 400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding-left: -4px;
+    padding-right: -4px;
+    border-radius: 10px;
+    max-width: 850px;
+    z-index: 100;
+    transform: scaleY(0);
+}
+
+#cookieplate {
+    position: absolute;
+    z-index: 100;
+}
+
+@keyframes backgroundScroll {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 282.84px 0px;
+    }
+}
+
+
+
+
+
