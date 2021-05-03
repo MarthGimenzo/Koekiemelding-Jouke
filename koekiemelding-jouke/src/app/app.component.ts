@@ -51,7 +51,8 @@ export class AppComponent implements OnInit {
             .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_2.png"}})
             .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_3.png"}})
         }
-
+      // Lost:
+      intro.set('#text', {delay: 0.8, text: {value: "Verloren..."}, opacity: 1})
 
       // Display buttons:
       intro.from('#left_button', 0.4, { x: -300, ease: Back.easeOut  })
