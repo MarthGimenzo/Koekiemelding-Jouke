@@ -4,6 +4,7 @@
     bottom: 180px;
     width: 80%;
     z-index: 200;
+    cursor: pointer;
 }
 
 #righthand {
@@ -12,5 +13,6 @@
     bottom: 180px;
     width: 80%;
     z-index: 210;
+    cursor: pointer;
 }
 

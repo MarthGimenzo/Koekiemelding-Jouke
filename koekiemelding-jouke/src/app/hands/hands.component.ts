@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HandsComponent implements OnInit {
 
+  leftHandClick() {
+    console.log("Left hand clicked")
+  }
+
+  rightHandClick() {
+    console.log("Right hand clicked")
+  }
+
   constructor() { }
 
   ngOnInit(): void {
