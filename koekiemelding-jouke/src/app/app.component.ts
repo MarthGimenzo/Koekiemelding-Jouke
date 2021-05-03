@@ -35,10 +35,10 @@ export class AppComponent implements OnInit {
           .set('#text', {delay: 0.2, opacity: 1})
       )
       .set('#text', {delay: 0.2, opacity: 0})
-      .from('#lefthand', 0.3, { x: -1500, delay: 2, ease: Power0.easeOut  })
+      .from('#lefthand', 0.3, { x: -1600, delay: 2, ease: Power0.easeOut  })
       .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_2.png"}})
       .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_3.png"}})
-      .to('#righthand', 0.3, { x: -700, ease: Power0.easeOut  })
+      .to('#righthand', 0.3, { x: -660, ease: Power0.easeOut  })
       .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_2.png"}})
       .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_3.png"}})
 
