@@ -1,8 +1,16 @@
-.hands {
-    position: relative;
-    right: 60%;
-    bottom: 80px;
-    width: 180%;
+#lefthand {
+    position: absolute;
+    right: 20%;
+    bottom: 180px;
+    width: 80%;
     z-index: 200;
+}
+
+#righthand {
+    position: absolute;
+    right: -80%;
+    bottom: 180px;
+    width: 80%;
+    z-index: 210;
 }
 
