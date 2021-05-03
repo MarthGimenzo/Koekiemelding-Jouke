@@ -36,15 +36,22 @@ export class AppComponent implements OnInit {
         )
         .set('#text', {delay: 0.2, opacity: 0})
 
+      var randomNumber = Math.floor(Math.random() * 2);
+      (randomNumber == 1) ? leftHand() : rightHand();
       // Left hand animation:
-      intro.from('#lefthand', 0.3, { x: -1600, delay: 2, ease: Power0.easeOut  })
-        .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_2.png"}})
-        .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_3.png"}})
+        function leftHand() {
+          intro.to('#lefthand', 0.3, { x: 900, delay: 2, ease: Power0.easeOut  })
+            .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_2.png"}})
+            .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_3.png"}})
+        }
 
       // Right hand animation:
-      intro.to('#righthand', 0.3, { x: -660, ease: Power0.easeOut  })
-        .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_2.png"}})
-        .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_3.png"}})
+        function rightHand() {
+          intro.to('#righthand', 0.3, { x: -900, ease: Power0.easeOut  })
+            .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_2.png"}})
+            .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_3.png"}})
+        }
+
 
       // Display buttons:
       intro.from('#left_button', 0.4, { x: -300, ease: Back.easeOut  })

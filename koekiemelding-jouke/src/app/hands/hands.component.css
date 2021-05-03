@@ -1,17 +1,17 @@
 #lefthand {
     position: absolute;
-    right: 20%;
+    right: 900px;
     bottom: 180px;
-    width: 80%;
+    width: 115%;
     z-index: 200;
     cursor: pointer;
 }
 
 #righthand {
     position: absolute;
-    right: -700px;
+    left: 900px;
     bottom: 180px;
-    width: 80%;
+    width: 115%;
     z-index: 210;
     cursor: pointer;
 }
