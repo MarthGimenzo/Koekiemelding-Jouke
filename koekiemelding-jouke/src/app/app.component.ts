@@ -16,12 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    //let intro_tune = new Howl({
-    //  src: ['../assets/soundeffects/fupicat__winsquare.wav'],
-    //  autoplay: true,
-    //});
     let intro = new TimelineLite();
-    //intro_tune.play();0
     intro.to('#yellow-rectangle', 0.2, { scaleY: 1, delay: 1, ease: Power0.easeOut })
     .from('#cookieplate', 0.6, { x: -1500, ease: Back.easeOut  })
       .to('#text', { duration:0.5, opacity: 1, yoyo: true,ease:Power0.easeNone,repeat:4})
@@ -35,17 +30,21 @@ export class AppComponent implements OnInit {
           .set('#text', {delay: 0.2, opacity: 1})
       )
       .set('#text', {delay: 0.2, opacity: 0})
-      .from('#lefthand', 0.3, { x: -1600, delay: 2, ease: Power0.easeOut  })
+
+      // Left hand animation:
+      intro.from('#lefthand', 0.3, { x: -1600, delay: 2, ease: Power0.easeOut  })
       .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_2.png"}})
       .set('#lefthand',{delay: 0.08, attr:{src:"..\\assets\\left_hand_3.png"}})
-      .to('#righthand', 0.3, { x: -660, ease: Power0.easeOut  })
+
+      // Right hand animation:
+      intro.to('#righthand', 0.3, { x: -660, ease: Power0.easeOut  })
       .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_2.png"}})
       .set('#righthand',{delay: 0.08, attr:{src:"..\\assets\\right_hand_3.png"}})
 
-    // Display buttons:
-
-
-
+      // Display buttons:
+      intro.from('#left_button', 0.4, { x: -300, ease: Back.easeOut  })
+      intro.from('#middle_button', 0.4, { y: 100, ease: Back.easeOut},'-=0.4')
+      intro.from('#right_button', 0.4, { x: 300, ease: Back.easeOut},'-=0.4')
 
   }
 }
