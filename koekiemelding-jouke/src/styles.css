@@ -6,5 +6,5 @@ body {
 
 .pixelgraphics {
     min-width: 320px;
-
+    image-rendering: optimizeSpeed;
 }

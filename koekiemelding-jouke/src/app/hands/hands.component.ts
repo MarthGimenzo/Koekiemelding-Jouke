@@ -1,23 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import gsap, { Power0 } from 'gsap';
+import { all } from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-hands',
   templateUrl: './hands.component.html',
   styleUrls: ['./hands.component.css']
 })
-export class HandsComponent implements OnInit {
 
-  leftHandClick() {
-    console.log("Left hand clicked")
-  }
-
-  rightHandClick() {
-    console.log("Right hand clicked")
-  }
+export class HandsComponent implements OnInit, AfterViewInit {
+  public handTimeline = gsap.timeline({overwrite: true})
+  @Input() side: string
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {}
+
+  // HAND animation:
+  animateHand() {
+    this.handTimeline.to('#hands', {
+        duration:  0.6,
+        x:         this.side === 'left' ? 900 : -900,
+        delay:     2,
+        ease:      Power0.easeOut,
+      overwrite: true
+      })
+      .set('#hands', {delay: 0.08, attr: {src: '..\\assets\\' + this.side + '_hand_2.png'}})
+      .set('#hands', {delay: 0.08, attr: {src: '..\\assets\\' + this.side + '_hand_3.png'}})
   }
 
+  // When hand is clicked
+  click() {
+    console.log('Geraakt')
+    this.handTimeline.set('#hands', {attr: {src: '..\\assets\\' + this.side + '_hand_hit.png'}, overwrite: true})
+      .to('#hands', {duration: 0.5, x: this.side === 'left' ? -900 : 900, ease: Power0.easeOut})
+  }
 }

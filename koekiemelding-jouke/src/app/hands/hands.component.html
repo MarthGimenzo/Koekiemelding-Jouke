@@ -1,2 +1,5 @@
-<img (click)="leftHandClick()" id="lefthand" class="pixelgraphics" src="..\assets\left_hand_1.png" alt="Left hand">
-<img (click)="rightHandClick()" id="righthand" class="pixelgraphics" src="..\assets\right_hand_1.png" alt="Right hand">
+<img (click)="click()" id="hands" class="pixelgraphics hands" src="../assets/{{side}}_hand_1.png" alt="Hands" style="left:{{side === 'left' ? -1000 : 900}}px">
+
+
+
+

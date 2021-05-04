@@ -1,15 +1,5 @@
-#lefthand {
+.hands {
     position: absolute;
-    right: 900px;
-    bottom: 180px;
-    width: 115%;
-    z-index: 200;
-    cursor: pointer;
-}
-
-#righthand {
-    position: absolute;
-    left: 900px;
     bottom: 180px;
     width: 115%;
     z-index: 210;
