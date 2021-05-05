@@ -27,13 +27,13 @@ export class HandsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {}
 
-  // HAND animation:
+  // Hand grabbing animation
+
   animateHand() {
     this.handTimeline = gsap.timeline()
     console.log("Incoming hand animation start")
     this.handDelay = Math.floor(Math.random() * 5) + 1;
     console.log("Amount of seconds before hand: " + this.handDelay)
-
     this.handTimeline.add(()=> this.resetHandPosition.emit(true))
       .to('#hands', {duration: 0.3, delay: this.handDelay, x: this.side === 'left' ? -110 : 0, ease: Power0.easeOut})
       .set('#hands', {delay: 0.08, attr: {src: '..\\assets\\' + this.side + '_hand_2.png'}})
@@ -41,7 +41,8 @@ export class HandsComponent implements OnInit, AfterViewInit {
       .add(()=> this.lost.emit(true))
   }
 
-  // When hand is HIT
+  // Player hits the hand
+
   click() {
     console.log('Hand geraakt')
     this.handHit.set('#hands', {attr: {src: '..\\assets\\' + this.side + '_hand_hit.png'}, overwrite: true})

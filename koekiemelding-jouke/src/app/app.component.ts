@@ -13,38 +13,19 @@ gsap.registerPlugin(TextPlugin);
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'koekiemelding-jouke';
   public intro
   public reset
   public lost
+  public won
   public ending
   public randomNumber
+  public gameOn
 
   @ViewChild(HandsComponent, {static:true}) child: HandsComponent;
 
-  resetGame() {
-    this.reset = gsap.timeline();
-    this.reset.set('#yellow-rectangle', {backgroundColor: 'powderblue', overwrite: true}).set('#text', {text: {value: ' '}})
-    this.intro.kill()
-    this.handRandomizer()
-    this.initializeGame()
-  }
-
-  handRandomizer() {
-    this.randomNumber = Math.floor(Math.random() * 2);
-    this.child.side = (this.randomNumber == 0) ? "left" : "right"
-    console.log("Hand randomizer function: " + this.child.side)
-  }
-
-  setHandStartPosition() {
-    console.log("Reset Hand Position")
-    gsap.timeline().set('#hands', {attr: {src: '..\\assets\\' + this.child.side + '_hand_1.png'}, x: this.child.side === 'left' ? -1000 : 900})
-  }
-
-  ngAfterViewInit() {
-
-  }
+  // Angular functions
 
   ngOnInit() {
     console.log("ngOnInit")
@@ -53,12 +34,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.initializeGame();
   }
 
-  newEvent() {
-    console.log("Nieuw event opgeroepen")
-  }
+  // Custom functions
 
   initializeGame() {
     // Game Intro
+    this.gameOn = true;
+    gsap.timeline().set('#left_button', {x: -300})
+      .set('#middle_button', {y: 300})
+      .set('#right_button', {x: 300})
     this.intro = gsap.timeline();
     this.intro.to('#yellow-rectangle', 0.2, {scaleY: 1, delay: 1, ease: Power0.easeOut})
       .from('#cookieplate', 0.6, {x: -1500, ease: Back.easeOut})
@@ -77,23 +60,50 @@ export class AppComponent implements OnInit, AfterViewInit {
       .add(()=> this.child.animateHand())
   }
 
+  handRandomizer() {
+    this.randomNumber = Math.floor(Math.random() * 2);
+    this.child.side = (this.randomNumber == 0) ? "left" : "right"
+    console.log("Hand randomizer function: " + this.child.side)
+  }
+
+  setHandStartPosition() {
+    console.log("Reset Hand Position")
+    gsap.timeline().set('#hands', {attr: {src: '..\\assets\\' + this.child.side + '_hand_1.png'}, x: this.child.side === 'left' ? -1000 : 900})
+  }
+
+  resetGame() {
+    this.reset = gsap.timeline();
+    this.reset.set('#yellow-rectangle', {backgroundColor: 'powderblue', overwrite: true}).set('#text', {text: {value: ' '}})
+    this.intro.kill()
+    this.handRandomizer()
+    this.setHandStartPosition()
+    this.initializeGame()
+  }
+
   gameOver() {
     // Lost:
+    this.gameOn = false;
     this.lost = gsap.timeline();
     this.lost.set('#text', {delay: 0.8, text: {value: 'Verloren...'}, opacity: 1})
     this.lost.to('#yellow-rectangle', {backgroundColor: 'maroon'})
+      .add(()=> this.displayButtons())
   }
 
   gameWon() {
-
+    // Won:
+    this.gameOn = false;
+    this.won = gsap.timeline();
+    this.won.set('#text', {delay: 0.8, text: {value: 'Won!!'}, opacity: 1})
+    this.won.to('#yellow-rectangle', {backgroundColor: 'green'})
+      .add(()=> this.displayButtons())
   }
 
   displayButtons() {
-    // Display buttons:
+    //Display buttons:
     this.ending = gsap.timeline();
-    this.ending.to('#left_button', 0.4, {x: -300, ease: Back.easeOut})
-    this.ending.to('#middle_button', 0.4, {y: 100, ease: Back.easeOut}, '-=0.4')
-    this.ending.to('#right_button', 0.4, {x: 300, ease: Back.easeOut}, '-=0.4')
+    this.ending.to('#left_button', 0.4, {x: 0, ease: Back.easeOut})
+    this.ending.to('#middle_button', 0.4, {y: 0, ease: Back.easeOut}, '-=0.4')
+    this.ending.to('#right_button', 0.4, {x: 0, ease: Back.easeOut}, '-=0.4')
   }
 }
 
