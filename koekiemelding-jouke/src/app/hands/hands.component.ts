@@ -9,9 +9,12 @@ import { all } from 'codelyzer/util/function';
 })
 
 export class HandsComponent implements OnInit, AfterViewInit {
+
   public handTimeline = gsap.timeline({overwrite: true})
   public handHit = gsap.timeline({overwrite: true})
+
   @Input() side: string
+  @Output() lost = new EventEmitter<boolean>()
 
   constructor() { }
 
@@ -24,7 +27,7 @@ export class HandsComponent implements OnInit, AfterViewInit {
     this.handTimeline.to('#hands', {duration: 0.6, x: this.side === 'left' ? 900 : -900, delay: 2, ease: Power0.easeOut})
       .set('#hands', {delay: 0.08, attr: {src: '..\\assets\\' + this.side + '_hand_2.png'}})
       .set('#hands', {delay: 0.08, attr: {src: '..\\assets\\' + this.side + '_hand_3.png'}})
-      .add(()=> console.log("Verloren!"))
+      .add(()=> this.lost.emit(true))
   }
 
   // When hand is clicked
