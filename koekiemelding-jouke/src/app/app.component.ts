@@ -34,6 +34,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   handRandomizer() {
     this.randomNumber = Math.floor(Math.random() * 2);
     this.child.side = (this.randomNumber == 0) ? "left" : "right"
+    console.log("Hand randomizer function: " + this.child.side)
+  }
+
+  setHandStartPosition() {
+    console.log("Reset Hand Position")
     gsap.timeline().set('#hands', {attr: {src: '..\\assets\\' + this.child.side + '_hand_1.png'}, x: this.child.side === 'left' ? -1000 : 900})
   }
 
@@ -42,7 +47,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.handRandomizer()
+    console.log("ngOnInit")
+    this.handRandomizer();
+    this.setHandStartPosition();
     this.initializeGame();
   }
 
@@ -68,7 +75,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       )
       .set('#text', {delay: 0.2, opacity: 0})
       .add(()=> this.child.animateHand())
-      console.log("Hallo het is side " + this.child.side)
   }
 
   gameOver() {
