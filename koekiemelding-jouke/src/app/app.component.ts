@@ -21,8 +21,7 @@ export class AppComponent implements OnInit {
   public won
   public ending
   public randomNumber
-  public gameOn
-  public images
+  public audio
 
   @ViewChild(HandsComponent, {static:true}) child: HandsComponent;
 
@@ -32,13 +31,13 @@ export class AppComponent implements OnInit {
     console.log("ngOnInit")
     this.handRandomizer();
     this.setHandStartPosition();
-    this.preloadImages();
+    this.preloadContent();
     this.initializeGame();
   }
 
   // Custom functions
 
-  preloadImages() {
+  preloadContent() {
     gsap.timeline().set('#preload-images', {attr: {src: '..\\assets\\left_hand_1.png'}})
       .set('#preload-images', {attr: {src: '..\\assets\\left_hand_2.png'}})
       .set('#preload-images', {attr: {src: '..\\assets\\left_hand_3.png'}})
@@ -47,18 +46,21 @@ export class AppComponent implements OnInit {
       .set('#preload-images', {attr: {src: '..\\assets\\right_hand_2.png'}})
       .set('#preload-images', {attr: {src: '..\\assets\\right_hand_3.png'}})
       .set('#preload-images', {attr: {src: '..\\assets\\right_hand_hit.png'}})
+    this.audio = new Audio();
+    this.audio.src = '..\\assets\\soundeffects\\ouch.wav';
+    this.audio.load();
   }
 
   initializeGame() {
     // Game Intro
-    this.gameOn = true;
+    this.child.gameOn = true;
     gsap.timeline().set('#left_button', {x: -300})
       .set('#middle_button', {y: 300})
       .set('#right_button', {x: 300})
     this.intro = gsap.timeline();
     this.intro.to('#yellow-rectangle', 0.2, {scaleY: 1, delay: 1, ease: Power0.easeOut})
       .from('#cookieplate', 0.6, {x: -1500, ease: Back.easeOut})
-      .set('#text', {text: {value: 'Laat je je koekies niet afpakken!'}, opacity: 0})
+      .set('#text', {text: {value: 'Laat je koekies niet afpakken!'}, opacity: 0})
       .to('#text', {duration: 0.5, opacity: 1, yoyo: true, ease: Power0.easeNone, repeat: 4})
       .set('#text', {delay: 0.4, text: {value: '3...'}, opacity: 1})
       .set('#text', {delay: 0.8, text: {value: '2...'}})
@@ -88,6 +90,8 @@ export class AppComponent implements OnInit {
     this.reset = gsap.timeline();
     this.reset.set('#yellow-rectangle', {backgroundColor: 'powderblue', overwrite: true}).set('#text', {text: {value: ' '}})
     this.intro.kill()
+    this.child.gameOn = true;
+    this.child.hitCount = 0;
     this.handRandomizer()
     this.setHandStartPosition()
     this.initializeGame()
@@ -95,19 +99,43 @@ export class AppComponent implements OnInit {
 
   gameOver() {
     // Lost:
-    this.gameOn = false;
+    this.playGameOver();
+    this.child.gameOn = false;
     this.lost = gsap.timeline();
     this.lost.set('#text', {delay: 0.8, text: {value: 'Verloren...'}, opacity: 1})
-    this.lost.to('#yellow-rectangle', {backgroundColor: 'maroon'})
+    this.lost.set('#yellow-rectangle', {backgroundColor: 'maroon', overwrite: true})
       .add(()=> this.displayButtons())
+  }
+
+  playWon(){
+    this.audio = new Audio();
+    this.audio.src = '..\\assets\\soundeffects\\win.wav';
+    this.audio.load();
+    this.audio.play();
+  }
+
+  playYay(){
+    this.audio = new Audio();
+    this.audio.src = '..\\assets\\soundeffects\\yay.wav';
+    this.audio.load();
+    this.audio.play();
+  }
+
+  playGameOver(){
+    this.audio = new Audio();
+    this.audio.src = '..\\assets\\soundeffects\\game-over.wav';
+    this.audio.load();
+    this.audio.play();
   }
 
   gameWon() {
     // Won:
-    this.gameOn = false;
+    this.playWon()
+    this.child.gameOn = false;
     this.won = gsap.timeline();
     this.won.set('#text', {delay: 0.8, text: {value: 'Won!!'}, opacity: 1})
-    this.won.to('#yellow-rectangle', {backgroundColor: 'green'})
+    this.won.set('#yellow-rectangle', {backgroundColor: 'green', overwrite: true})
+      .add(()=> this.playYay())
       .add(()=> this.displayButtons())
   }
 
