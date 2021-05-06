@@ -41,7 +41,7 @@ export class HandsComponent implements OnInit, AfterViewInit {
       .add(()=> this.lost.emit(true))
   }
 
-  // Player hits the hand
+  // Player hits hand
 
   click() {
     console.log('Hand geraakt')

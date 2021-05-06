@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   public ending
   public randomNumber
   public gameOn
+  public images
 
   @ViewChild(HandsComponent, {static:true}) child: HandsComponent;
 
@@ -31,10 +32,22 @@ export class AppComponent implements OnInit {
     console.log("ngOnInit")
     this.handRandomizer();
     this.setHandStartPosition();
+    this.preloadImages();
     this.initializeGame();
   }
 
   // Custom functions
+
+  preloadImages() {
+    gsap.timeline().set('#preload-images', {attr: {src: '..\\assets\\left_hand_1.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\left_hand_2.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\left_hand_3.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\left_hand_hit.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\right_hand_1.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\right_hand_2.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\right_hand_3.png'}})
+      .set('#preload-images', {attr: {src: '..\\assets\\right_hand_hit.png'}})
+  }
 
   initializeGame() {
     // Game Intro

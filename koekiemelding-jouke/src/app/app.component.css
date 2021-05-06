@@ -12,6 +12,10 @@ h1 {
     font-size: x-large;
 }
 
+#preload-images {
+    display: none;
+}
+
 #text {
     opacity: 0%;
 }
