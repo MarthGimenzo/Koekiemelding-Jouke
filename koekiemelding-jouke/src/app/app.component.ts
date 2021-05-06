@@ -53,6 +53,8 @@ export class AppComponent implements OnInit {
 
   initializeGame() {
     // Game Intro
+    gsap.set('#shine', {rotation: 0, scale: 1, opacity: 1, timescale: 0})
+    gsap.to('#shine', {duration: 6, rotation: 360, ease: 'none', repeat: -1})
     this.child.gameOn = true;
     gsap.timeline().set('#left_button', {x: -300})
       .set('#middle_button', {y: 300})
@@ -62,6 +64,10 @@ export class AppComponent implements OnInit {
       .from('#cookieplate', 0.6, {x: -1500, ease: Back.easeOut})
       .set('#text', {text: {value: 'Laat je koekies niet afpakken!'}, opacity: 0})
       .to('#text', {duration: 0.5, opacity: 1, yoyo: true, ease: Power0.easeNone, repeat: 4})
+      .to('#shine', 1, {scale: 50, opacity: 0})
+      .add(()=> {
+        gsap.killTweensOf('#shine')
+      })
       .set('#text', {delay: 0.4, text: {value: '3...'}, opacity: 1})
       .set('#text', {delay: 0.8, text: {value: '2...'}})
       .set('#text', {delay: 0.8, text: {value: '1...'}})
@@ -92,6 +98,7 @@ export class AppComponent implements OnInit {
     this.intro.kill()
     this.child.gameOn = true;
     this.child.hitCount = 0;
+    gsap.set('#shine', {repeatRefresh: true, clearProps: "all"})
     this.handRandomizer()
     this.setHandStartPosition()
     this.initializeGame()
@@ -134,7 +141,8 @@ export class AppComponent implements OnInit {
     this.child.gameOn = false;
     this.won = gsap.timeline();
     this.won.set('#text', {delay: 0.8, text: {value: 'Won!!'}, opacity: 1})
-    this.won.set('#yellow-rectangle', {backgroundColor: 'green', overwrite: true})
+    this.won.to('#shine', 1, {scale: 1, opacity: 1})
+    this.won.set('#yellow-rectangle', {backgroundColor: 'powderblue', overwrite: true})
       .add(()=> this.playYay())
       .add(()=> this.displayButtons())
   }
