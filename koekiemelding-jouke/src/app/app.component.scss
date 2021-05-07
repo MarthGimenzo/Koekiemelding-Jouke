@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'colors';
+
+@font-face {
+  font-family: ZerofourB;
+  src: url("/assets/fonts/04B.ttf");
+}
+
+h1 {
+  font-family: ZerofourB;
+  position: absolute;
+  text-align: center;
+  top: 65%;
+  font-size: x-large;
+}
+
+#preload-images {
+  display: none;
+}
+
+#text {
+  opacity: 0%;
+}
+
+.yellow-rectangle {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background-color: $neutralblue;
+  height: 400px;
+  width: 100%;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: -4px;
+  padding-right: -4px;
+  border-radius: 10px;
+  max-width: 850px;
+  z-index: 100;
+  transform: scaleY(0);
+}
+
+#cookieplate {
+  position: absolute;
+  width: 85%;
+  z-index: 100;
+}
+
+#shine {
+  position: absolute;
+  width: 110%;
+  z-index: -90;
+  filter: blur(5px);
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  margin-top: 300px;
+  justify-content: space-around;
+}
+
+button {
+  display: flex;
+  background-color: $black;
+  font-family: ZerofourB;
+  color: $white;
+  border: 2px solid $white;
+  border-radius: 10px;
+  padding: 6px;
+  justify-content: space-around;
+  max-width: 106px;
+
+  &:hover {
+    background-color: $white;
+    color: $black;
+    border: 2px solid $black;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  button {
+    font-size: x-large;
+    max-width: 200px;
+  }
+}

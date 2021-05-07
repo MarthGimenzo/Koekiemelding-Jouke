@@ -4,7 +4,7 @@ import gsap, { Power0 } from 'gsap';
 @Component({
              selector:    'app-hands',
              templateUrl: './hands.component.html',
-             styleUrls:   ['./hands.component.css']
+             styleUrls:   ['./hands.component.scss']
            })
 
 export class HandsComponent implements OnInit, AfterViewInit {

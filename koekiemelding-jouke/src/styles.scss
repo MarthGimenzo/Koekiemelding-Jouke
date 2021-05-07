@@ -1,6 +1,8 @@
+@import 'app/_colors.scss';
+
 body {
     margin:           0px;
-    background-color: black;
+    background-color: $black;
     background-size:  141.42px 141.42px;
 }
 
