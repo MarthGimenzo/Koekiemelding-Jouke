@@ -1,8 +1,8 @@
 .hands {
     position: absolute;
-    bottom: 180px;
-    width: 115%;
-    z-index: 210;
-    cursor: pointer;
+    bottom:   180px;
+    width:    115%;
+    z-index:  210;
+    cursor:   pointer;
 }
 

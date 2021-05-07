@@ -1,11 +1,12 @@
-<div id="yellow-rectangle" class="yellow-rectangle">
-  <img id="cookieplate" class="pixelgraphics" src="..\assets\koekie_plate_small.png" alt="Koekiebord">
-  <img id="shine" class="pixelgraphics" src="..\assets\shine.png" alt="Shine">
-  <app-hands (lost)="gameOver()" (win)="gameWon()" (randomHand)="handRandomizer()" (resetHandPosition)="setHandStartPosition()"></app-hands>
+<div class="yellow-rectangle" id="yellow-rectangle">
+  <img alt="Koekiebord" class="pixelgraphics" id="cookieplate" src="..\assets\koekie_plate_small.png">
+  <img alt="Shine" class="pixelgraphics" id="shine" src="..\assets\shine.png">
+  <app-hands (lost)="gameOver()" (randomHand)="handRandomizer()" (resetHandPosition)="setHandStartPosition()"
+             (win)="gameWon()"></app-hands>
   <h1 id="text">Laat je koekies niet afpakken!</h1>
   <div class="buttons">
-    <button onclick="window.location.href='http://www.klarekoek.nl'" id="left_button">Accepteer Koekies</button>
-    <button onclick="window.location.href='http://www.klarekoek.nl'" id="middle_button">Koekloos Verder</button>
+    <button id="left_button" onclick="window.location.href='http://www.klarekoek.nl'">Accepteer Koekies</button>
+    <button id="middle_button" onclick="window.location.href='http://www.klarekoek.nl'">Koekloos Verder</button>
     <button (click)="resetGame()" id="right_button">Nog Een Keer</button>
   </div>
 </div>

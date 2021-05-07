@@ -8,13 +8,13 @@ describe('HandsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HandsComponent ]
-    })
-    .compileComponents();
+                                           declarations: [HandsComponent]
+                                         })
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HandsComponent);
+    fixture   = TestBed.createComponent(HandsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
