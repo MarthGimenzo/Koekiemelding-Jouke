@@ -2,12 +2,12 @@
 @import 'colors';
 
 @font-face {
-  font-family: ZerofourB;
-  src: url("/assets/fonts/04B.ttf");
+  font-family: KarmaticArcade;
+  src: url('/assets/fonts/ka1.ttf');
 }
 
 h1 {
-  font-family: ZerofourB;
+  font-family: KarmaticArcade;
   position: absolute;
   text-align: center;
   top: 65%;
@@ -64,11 +64,9 @@ h1 {
 button {
   display: flex;
   background-color: $black;
-  font-family: ZerofourB;
+  font-family: KarmaticArcade;
   color: $white;
-  border: 2px solid $white;
-  border-radius: 10px;
-  padding: 6px;
+  padding: 8px;
   justify-content: space-around;
   max-width: 106px;
 
@@ -82,7 +80,7 @@ button {
 
 @media screen and (min-width: 600px) {
   button {
-    font-size: x-large;
+    font-size: large;
     max-width: 200px;
   }
 }
