@@ -5,7 +5,7 @@
              (win)="gameWon()"></app-hands>
   <h1 id="text">Laat je koekies niet afpakken!</h1>
   <div class="buttons">
-    <button id="left_button" onclick="window.location.href='http://www.klarekoek.nl'">Accepteer Koekies</button>
+    <button id="left_button" (click)="placeCookie()">Accepteer Koekies</button>
     <button id="middle_button" onclick="window.location.href='http://www.klarekoek.nl'">Koekloos Verder</button>
     <button (click)="resetGame()" id="right_button">Nog Eens Proberen</button>
   </div>

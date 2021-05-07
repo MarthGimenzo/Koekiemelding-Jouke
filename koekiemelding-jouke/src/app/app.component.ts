@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild(HandsComponent, {static: true}) child: HandsComponent;
 
-  // Angular functions
+    // Angular functions
 
   ngOnInit(): void {
     console.log('ngOnInit');
@@ -33,7 +33,9 @@ export class AppComponent implements OnInit {
     this.initializeGame();
   }
 
-  // Custom functions
+    // Custom functions
+
+  // Game logic
   preloadContent(): void {
     // Preload graphics and audio
     gsap.timeline().set('#preload-images', {attr: {src: '..\\assets\\left_hand_1.png'}})
@@ -62,7 +64,7 @@ export class AppComponent implements OnInit {
       .from('#cookieplate', 0.6, {x: -1500, ease: Back.easeOut})
       .set('#text', {text: {value: 'Laat je koekies niet afpakken!'}, opacity: 0})
       .to('#text', {duration: 0.5, opacity: 1, yoyo: true, ease: Power0.easeNone, repeat: 4})
-      .to('#shine', 1, {scale: 50, opacity: 0})
+      .to('#shine', 2, {opacity: 0})
       .add(() => {
         gsap.killTweensOf('#shine');
       })
@@ -118,6 +120,27 @@ export class AppComponent implements OnInit {
       .add(() => this.displayButtons());
   }
 
+  gameWon(): void {
+    // Won:
+    this.playWon();
+    this.child.gameOn = false;
+    this.won          = gsap.timeline();
+    this.won.set('#text', {delay: 0.8, text: {value: 'Won!!'}, opacity: 1});
+    this.won.to('#shine', 1, {scale: 1, opacity: 1});
+    this.won.set('#yellow-rectangle', {backgroundColor: 'powderblue', overwrite: true})
+      .add(() => this.playYay())
+      .add(() => this.displayButtons());
+  }
+
+  displayButtons(): void {
+    // Display buttons:
+    this.ending = gsap.timeline();
+    this.ending.to('#left_button', 0.4, {x: 0, ease: Back.easeOut});
+    this.ending.to('#middle_button', 0.4, {y: 0, ease: Back.easeOut}, '-=0.4');
+    this.ending.to('#right_button', 0.4, {x: 0, ease: Back.easeOut}, '-=0.4');
+  }
+
+  // Sound effects
   playWon(): void {
     this.audio     = new Audio();
     this.audio.src = '..\\assets\\soundeffects\\win.wav';
@@ -139,24 +162,11 @@ export class AppComponent implements OnInit {
     this.audio.play();
   }
 
-  gameWon(): void {
-    // Won:
-    this.playWon();
-    this.child.gameOn = false;
-    this.won          = gsap.timeline();
-    this.won.set('#text', {delay: 0.8, text: {value: 'Won!!'}, opacity: 1});
-    this.won.to('#shine', 1, {scale: 1, opacity: 1});
-    this.won.set('#yellow-rectangle', {backgroundColor: 'powderblue', overwrite: true})
-      .add(() => this.playYay())
-      .add(() => this.displayButtons());
-  }
-
-  displayButtons(): void {
-    // Display buttons:
-    this.ending = gsap.timeline();
-    this.ending.to('#left_button', 0.4, {x: 0, ease: Back.easeOut});
-    this.ending.to('#middle_button', 0.4, {y: 0, ease: Back.easeOut}, '-=0.4');
-    this.ending.to('#right_button', 0.4, {x: 0, ease: Back.easeOut}, '-=0.4');
+  // Cookie placement
+  placeCookie(): void {
+    console.log('Er wordt nu een cookie geplaatst');
+    document.cookie = 'A cookie has been implemented';
+    window.location.href = 'http://www.klarekoek.nl';
   }
 }
 
