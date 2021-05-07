@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
     // Angular functions
 
   ngOnInit(): void {
-    console.log('ngOnInit');
     this.handRandomizer();
     this.setHandStartPosition();
     this.preloadContent();
@@ -84,11 +83,9 @@ export class AppComponent implements OnInit {
   handRandomizer(): void {
     this.randomNumber = Math.floor(Math.random() * 2);
     this.child.side   = (this.randomNumber === 0) ? 'left' : 'right';
-    console.log('Hand randomizer function: ' + this.child.side);
   }
 
   setHandStartPosition(): void {
-    console.log('Reset Hand Position');
     gsap.timeline().set('#hands', {
       attr: {src: '..\\assets\\' + this.child.side + '_hand_1.png'},
       x:    this.child.side === 'left' ? -1000 : 900
@@ -164,7 +161,6 @@ export class AppComponent implements OnInit {
 
   // Cookie placement
   placeCookie(): void {
-    console.log('Er wordt nu een cookie geplaatst');
     document.cookie = 'A cookie has been implemented';
     window.location.href = 'http://www.klarekoek.nl';
   }
